@@ -920,7 +920,7 @@
     <accept_field />
     <accept_stepname />
     <file>
-      <name />
+      <name>/Users/charles/OneDrive - caelis.it/dsbd/cursos/aldeia/02_scripts/pentaho/exercicios/dados/exerc/consolidado.xls</name>
       <filemask />
       <exclude_filemask />
       <file_required>N</file_required>
