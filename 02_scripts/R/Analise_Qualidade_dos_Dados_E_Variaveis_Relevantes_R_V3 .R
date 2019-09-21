@@ -76,8 +76,7 @@ head(export_graos,10)
 nrow(export_graos)
 
 
-# Verifiando a Quantidade de Anos na Tabela???
-
+# Verificando a Quantidade de Anos na Tabela???
 
 
 
@@ -121,14 +120,14 @@ max(export_graos$Fechamento)
 
 ## E a Cotação em Junho/1998???
 
-export_graos[,13][export_graos[,12]==199701]
 
 
 
 
 
 
-## Ou prode-se fazer isto no atacado
+
+## Ou prode-se fazer isto no atacado:
 
 summary(export_graos)
 
@@ -141,7 +140,7 @@ summary(export_graos)
 
 import <- data.frame((export_graos %>%
                         group_by(CO_PAIS) %>%
-                        dplyr::summarise(Dolares=sum(VL_FOB, na.rm = TRUE)
+                        dplyr::summarise(Dolares=sum(VL_FOB, NA, na.rm = TRUE)
                         )),
                      row.names = NULL)
 
@@ -178,7 +177,7 @@ m_p_valor
 
 import_2 <- data.frame((export_graos %>%
                           group_by(CO_PAIS) %>%
-                          dplyr::summarise(Toneladas=sum(KG_LIQUIDO, na.rm = TRUE)
+                          dplyr::summarise(Toneladas=sum(KG_LIQUIDO, NA, na.rm = TRUE)
                           )),
                        row.names = NULL)
 
@@ -207,7 +206,7 @@ m_p_ton
 
 import_3 <- data.frame((export_graos %>%
                           group_by(CO_PAIS,CO_NCM) %>%
-                          dplyr::summarise(Toneladas=sum(KG_LIQUIDO, na.rm = TRUE)
+                          dplyr::summarise(Toneladas=sum(KG_LIQUIDO, NA, na.rm = TRUE)
                           )),
                        row.names = NULL)
 
@@ -251,7 +250,7 @@ m_i_ton_scm
 
 export <- data.frame((export_graos %>%
                         group_by(SG_UF_NCM,CO_NCM) %>%
-                        dplyr::summarise(Dolares=sum(VL_FOB, na.rm = TRUE)
+                        dplyr::summarise(Dolares=sum(VL_FOB, NA, na.rm = TRUE)
                         )),
                      row.names = NULL)
 
@@ -277,6 +276,9 @@ m_e_milho <- data.table(head(export %>%
 m_e_soja
 m_e_cafe
 m_e_milho
+
+# E os maiores estados exportadores de Graos em Toneladas????
+
 
 
 ## Agora vamos verificar quais variaveis sao mais relevantes para continuarmos com o estudo:
@@ -396,3 +398,79 @@ summary(ton_vs_dolar)
 ## Neste caso nao existem variaveis neste conjunto, seria necessario separar por graos e fazer a mesma validacao
 
 # Conclusao: Existem outras variaveis que necessitam ser encontradas e anexadas para explicar as vendas de graos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### R1
+length(unique(export_graos$CO_ANO))
+
+
+#### R2
+min(export_graos$VL_FOB)
+
+max(export_graos$VL_FOB)
+
+
+#### R3
+export_graos[export_graos$CO_ANO_MES==199701]
+
+export_graos[export_graos$CO_ANO_MES==199701][,13]
+
+head(export_graos[export_graos$CO_ANO_MES==199701][,13],1)
+
+
+#### R4
+export <- data.frame((export_graos %>%
+                        group_by(SG_UF_NCM,CO_NCM) %>%
+                        dplyr::summarise(Toneladas=sum(KG_LIQUIDO, NA, na.rm = TRUE)
+                        )),
+                     row.names = NULL)
+
+export
+
+ncm
+
+m_e_t_soja <- data.table(head(export %>%
+                              filter(CO_NCM==12019000) %>%  
+                              group_by(SG_UF_NCM,Grao="Soja") %>%
+                              arrange(desc(Toneladas)),1))
+
+m_e_t_cafe <- data.table(head(export %>%
+                              filter(CO_NCM==9011110) %>%  
+                              group_by(SG_UF_NCM,Grao="Cafe") %>%
+                              arrange(desc(Toneladas)),1))
+
+
+m_e_t_milho <- data.table(head(export %>%
+                               filter(CO_NCM==10059010) %>%  
+                               group_by(SG_UF_NCM,Grao="Milho") %>%
+                               arrange(desc(Toneladas)),1))
+m_e_t_soja
+m_e_t_cafe
+m_e_t_milho
