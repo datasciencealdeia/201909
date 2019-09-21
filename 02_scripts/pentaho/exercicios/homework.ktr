@@ -920,7 +920,7 @@
     <accept_field />
     <accept_stepname />
     <file>
-      <name>/Users/charles/OneDrive - caelis.it/dsbd/cursos/aldeia/02_scripts/pentaho/exercicios/dados/exerc/consolidado.xls</name>
+      <name>${Internal.Entry.Current.Directory}/dados/exerc/consolidado.xls</name>
       <filemask />
       <exclude_filemask />
       <file_required>N</file_required>
@@ -1047,8 +1047,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>529</xloc>
-      <yloc>114</yloc>
+      <xloc>528</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
