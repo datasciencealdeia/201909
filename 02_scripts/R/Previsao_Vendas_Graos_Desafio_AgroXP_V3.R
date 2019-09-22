@@ -17,7 +17,7 @@ library(stringr)
 library(forecast)
 library(forecastHybrid)
 
-
+ 
 
 # Importando o arquivo proviniente da ETL
 

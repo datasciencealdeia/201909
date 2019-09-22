@@ -2,7 +2,7 @@
 
 ## Como executar os comandos no R por aqui???
 
-
+ 
 # Comando para setar a pasta onde o R puxara e copiara as informacoes
 
 setwd('/home/ds/git/201907/02_scripts/R/')
