@@ -1,6 +1,6 @@
 gc(reset=TRUE)
 
-setwd("/home/ds/git/201907/02_scripts/R/") 
+setwd("/home/ds/") 
 
 # Instalação Pacote para Tabelas Otimizadas
 
@@ -446,28 +446,28 @@ head(export_graos[export_graos$CO_ANO_MES==199701][,13],1)
 
 
 #### R4
-export <- data.frame((export_graos %>%
+expo_2 <- data.frame((expo_2_graos %>%
                         group_by(SG_UF_NCM,CO_NCM) %>%
                         dplyr::summarise(Toneladas=sum(KG_LIQUIDO, NA, na.rm = TRUE)
                         )),
                      row.names = NULL)
 
-export
+expo_2
 
 ncm
 
-m_e_t_soja <- data.table(head(export %>%
+m_e_t_soja <- data.table(head(expo_2 %>%
                               filter(CO_NCM==12019000) %>%  
                               group_by(SG_UF_NCM,Grao="Soja") %>%
                               arrange(desc(Toneladas)),1))
 
-m_e_t_cafe <- data.table(head(export %>%
+m_e_t_cafe <- data.table(head(expo_2 %>%
                               filter(CO_NCM==9011110) %>%  
                               group_by(SG_UF_NCM,Grao="Cafe") %>%
                               arrange(desc(Toneladas)),1))
 
 
-m_e_t_milho <- data.table(head(export %>%
+m_e_t_milho <- data.table(head(expo_2 %>%
                                filter(CO_NCM==10059010) %>%  
                                group_by(SG_UF_NCM,Grao="Milho") %>%
                                arrange(desc(Toneladas)),1))
