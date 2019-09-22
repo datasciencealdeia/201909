@@ -1,4 +1,4 @@
-gc(reset=TRUE)
+gc(reset=TRUE)  
 
 setwd("/home/ds/") 
 
